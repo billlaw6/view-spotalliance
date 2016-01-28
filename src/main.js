@@ -15,18 +15,18 @@ var router = new Router()
 
 router.map({
   '/intro': {
-    components: Intro
+    component: Intro
   },
   '/amap': {
-    components: Amap
+    component: Amap
   },
   '/chat': {
-    components: Chat
+    component: Chat
   }
 })
 
 router.beforeEach(function () {
-  windo.scrollTo(0, 0)
+  window.scrollTo(0, 0)
 })
 
 router.redirect({

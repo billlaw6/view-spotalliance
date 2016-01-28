@@ -3,6 +3,12 @@
     <div id="header">
       <h1><a href="#/">Introduction</a></h1>
     </div>
+
+    <p>
+      <a v-link="{ path: '/intro' }"
+      <a v-link="{ path: '/amap' }"
+      <a v-link="{ path: '/chat' }"
+    </p>
   
     <router-view
       class="view"
@@ -12,11 +18,14 @@
     </router-view>
 
   </div>
+  <user></user>
 </template>
 
 <script>
+
 import HeaderVue from './components/Header.vue'
 import IntroVue from './components/Intro.vue'
+import UserVue from './components/User.vue'
 
 export default {
   name: 'App',
@@ -28,10 +37,6 @@ export default {
 
   data () {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
       msg: 'Hello Vue!'
     }
   }
