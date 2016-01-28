@@ -2,10 +2,14 @@
   <div id="app">
     <h1>{{ msg }}</h1>
   </div>
+  <user></user>
 </template>
 
 <script>
+import User from './components/User.vue'
+
 export default {
+
   data () {
     return {
       // note: changing this line won't causes changes
