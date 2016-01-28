@@ -15,12 +15,13 @@ module.exports = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
+        include: /src|node_modules\/vue-strap\/src\//
       },
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//
       },
       {
         test: /\.json$/,
@@ -35,6 +36,18 @@ module.exports = {
         }
       }
     ]
+  },
+  babel: {
+    presets: ['es2015'],
+    plugins: ['transform-runtime']
+  },
+  // Vue Settings
+  vue: {
+    loaders: {
+      // css: ExtractTextPlugin.extract("css"),
+      // stylus: ExtractTextPlugin.extract("css!stylus"),
+      js: 'babel'
+    }
   },
   devServer: {
     historyApiFallback: true,
