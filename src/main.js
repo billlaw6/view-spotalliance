@@ -1,28 +1,33 @@
 import Vue from 'vue'
+Vue.config.debug = true
+
 import Router from 'vue-router'
 
 import App from './App.vue'
-import Intro from './components/Intro.vue'
-import Amap from './components/Amap.vue'
-import Chat from './components/Chat.vue'
 
-// install router
+import AmapView from './components/AmapView.vue'
+import ChatView from './components/ChatView.vue'
+import IntroView from './components/IntroView.vue'
+import UserView from './components/UserView.vue'
+
 Vue.use(Router)
 
-
-// routing
 var router = new Router()
 
 router.map({
   '/intro': {
-    component: Intro
+    component: IntroView
   },
   '/amap': {
-    component: Amap
+    component: AmapView
   },
   '/chat': {
-    component: Chat
+    component: ChatView
+  },
+  '/user': {
+    component: UserView
   }
+
 })
 
 router.beforeEach(function () {
@@ -30,7 +35,7 @@ router.beforeEach(function () {
 })
 
 router.redirect({
-  '*': '/Intro'
+  '*': '/intro'
 })
 
 router.start(App, '#app')

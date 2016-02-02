@@ -16,7 +16,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue',
-        include: /src|node_modules\/vue-strap\/src\//
       },
       {
         test: /\.js$/,

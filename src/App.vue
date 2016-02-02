@@ -1,45 +1,36 @@
 <template>
+  <header-view></header-view>
   <div id="wrapper">
-    <div id="header">
-      <h1><a href="#/">Introduction</a></h1>
-    </div>
-
-    <p>
-      <a v-link="{ path: '/intro' }"
-      <a v-link="{ path: '/amap' }"
-      <a v-link="{ path: '/chat' }"
-    </p>
-  
-    <router-view
-      class="view"
-      keep-alive
-      transition
-      transition-mode="out-in">
-    </router-view>
-
+  {{ site_name }}
   </div>
-  <user></user>
+
+  <p>
+    <a v-link="{ path: '/intro' }">Intro</a>
+    <a v-link="{ path: '/chat' }">Chat</a>
+  </p>
+
+  <router-view
+    class="view"
+    keep-alive
+    transition
+    transition-mode="out-in">
+  </router-view>
 </template>
 
 <script>
-
-import HeaderVue from './components/Header.vue'
-import IntroVue from './components/Intro.vue'
-import UserVue from './components/User.vue'
+import HeaderView from './components/HeaderView.vue'
 
 export default {
   name: 'App',
 
-  components: {
-    HeaderVue,
-    IntroVue
+  data: {
+    site_name: '景上往来'
   },
 
-  data () {
-    return {
-      msg: 'Hello Vue!'
-    }
+  components: {
+    HeaderView
   }
+
 }
 </script>
 
