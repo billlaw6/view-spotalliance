@@ -39,19 +39,6 @@
 </template>
 
 <script>
-var VueStrap = require('../../node_modules/vue-strap/dist/vue-strap.min.js')
-//import Dropdown from 'vue-strap/src/Dropdown.vue'
-
-export default {
-  name: 'Header',
-
-  data () {
-    return {
-      msg: 'I am Header!'
-    }
-  }
-
-}
 </script>
 
 <style>

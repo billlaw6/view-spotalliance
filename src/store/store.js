@@ -1,17 +1,4 @@
-import Vue from 'vue'
-import { EventEmitter } from 'events'
-import { Promise } from 'es6-promise'
-
-Vue.use(require('vue-resource'));
-Vue.http.options.root = 'http://123.56.115.20';
-/*Vue.http.options.emulateJSON = true;*/
-/*Vue.http.options.emulateHttp = true;*/
-Vue.http.headers.common['Authorization'] = 'Basic abcdefg';
-
-const site_name = '景尚往来'
-const itemsCache = Object.create(null)
 const key = 'VUE-CHAT-v1';
-const store = new EventEmitter();
 
 // 虚拟数据
 if (!localStorage.getItem(key)) {

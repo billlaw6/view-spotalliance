@@ -9,11 +9,15 @@
 </template>
 
 <script>
-import store from '../store/index.js'
+//import store from '../store/index.js'
 
 export default {
-  data: {
-    msg: store.state.msg
+  name: 'UserView',
+
+  data() {
+    return {
+      msg: "store.state.msg"
+    }
   }
 }
 
