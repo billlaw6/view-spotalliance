@@ -1,0 +1,7 @@
+基本功能调通版，vue, bootstrap, vue-resource 组合
+
+js文件通过standard工具纠正风格
+
+使用了window.localStorage存，调试中发现首次fetch时index.js还没取到数，注释掉每次清空本地存储解决。
+
+OOOOOOOOOOOOOOh, YEAH!!!!!!!!!!!

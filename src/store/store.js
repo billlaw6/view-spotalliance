@@ -1,7 +1,7 @@
 const key = 'VUE-CHAT-v1';
 
 // 虚拟数据
-if (!localStorage.getItem(key)) {
+if (!window.localStorage.getItem(key)) {
     let now = new Date();
     
     let data = {

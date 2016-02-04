@@ -17,19 +17,9 @@ export default store
 /**
 * Export site_name
 */
-/*store.site_name = => {*/
-  /*return new Promise((resolve, reject) => {*/
-      /*'sitename'*/
-    /*}*/
-  /*)*/
-/*}*/
-
-
-/*export default {*/
-  /*data: function () {*/
-    /*return { store }*/
-  /*}*/
-/*}*/
+store.site_name = () => {
+  return 'sitename'
+}
 
 /**
 * Fetch a user data with given id.
