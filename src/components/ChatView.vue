@@ -1,7 +1,11 @@
 <template>
 <div> user.name </div>
 <div> {{ basic_info.site_name }} </div>
-<div> {{ testData }} </div>
+<ul>
+  <li v-for="item in serverData.userList">
+    {{ item.username }}
+  </li>
+</ul>
 </template>
 
 <script>
@@ -15,11 +19,11 @@ export default {
   data () {
     let basic_info = store.basic_info()
     let serverData = store.fetch()
-    let testData = store.getTestData()
+    console.log('testData in ChatView')
+    console.log(serverData)
     return {
       basic_info,
-      serverData,
-      testData
+      serverData
     };
   },
 

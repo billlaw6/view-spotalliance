@@ -56,7 +56,7 @@ if (!window.localStorage.getItem(key)) {
 
   // 从后台取用户列表存到本地
   // Vue.http.get('http://www.spotalliance.com/users').then(
-  Vue.http.get('./testData.json', {}, {
+  Vue.http.get('./src/store/testData.json', {}, {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     },
@@ -66,7 +66,6 @@ if (!window.localStorage.getItem(key)) {
       console.log('Get userList OK')
       console.log(response.data)
       state.userList = response.data
-      console.log(state)
     },
     function (response) {
       console.log('failed')
@@ -81,7 +80,7 @@ export default {
   // store 用于vuex，组件间信号传递
   store,
   basic_info () {
-    console.log('Get constant name!')
+    console.log('Get basic infomation!')
     return { site_name }
   },
   fetch () {
@@ -92,25 +91,5 @@ export default {
   save (store) {
     console.log('Saving data')
     window.localStorage.setItem(key, JSON.stringify(store))
-  },
-  getTestData () {
-    console.log('Getting test data')
-    let localdata = {}
-    Vue.http.get('./src/store/testData.json', {}, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest"
-      },
-      emulateJSON: true
-    }).then(
-      function (response) {
-        console.log('Get userList OK')
-        console.log(response.data)
-        localdata = response.data
-        console.log(localdata)
-      },
-      function (response) {
-        console.log('failed')
-      }
-    )
   }
 }
