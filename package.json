@@ -16,6 +16,7 @@
     "vuex": "^0.2.0"
   },
   "devDependencies": {
+    "autosize": "^3.0.15",
     "babel-core": "^6.0.0",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.0.0",
@@ -28,12 +29,15 @@
     "eslint": "^1.10.3",
     "file-loader": "^0.8.4",
     "json-loader": "^0.5.4",
+    "material-design-lite": "^1.1.1",
     "url-loader": "^0.5.7",
+    "vue-async-data": "^1.0.2",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.0.0",
     "vue-strap": "^1.0.7",
     "vue-style-loader": "^1.0.0",
+    "vue-validator": "^2.0.0-alpha.18",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   },

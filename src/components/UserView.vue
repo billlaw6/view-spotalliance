@@ -1,24 +1,35 @@
 <template>
-
-  <ul id="userlist">
-    <li v-for="user in users">
-      {{ user.username }}
-    </li>
-  </ul>
-
+  UserView
+  <div> {{ msg }} </div>
 </template>
 
 <script>
-//import store from '../store/index.js'
-
 export default {
   name: 'UserView',
 
-  data() {
+  // 本组件的数据
+  data () {
     return {
-      msg: "store.state.msg"
+      msg: 'Message from UserView'
     }
-  }
-}
+  },
 
+  asyncData: function (resolve, reject) {
+    this.$http.get('../testData.json', {}, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      emulateJSON: true
+    }).then( function (response) {
+      var data = response.data
+      resolve({
+        msg: data
+      });
+      }, function(response) {
+        console.log('Error in UserView asyncData')
+      }
+    )
+  }
+
+}
 </script>
