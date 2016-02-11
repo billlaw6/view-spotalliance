@@ -1,6 +1,6 @@
 <template>
 <div> user.name </div>
-<div> {{ basic_info.site_name }} </div>
+<div> {{ serverData.msg }} </div>
 <ul>
   <li v-for="item in serverData.userList">
     {{ item.username }}
@@ -17,12 +17,10 @@ export default {
 
   // 本组件的数据
   data () {
-    let basic_info = store.basic_info()
     let serverData = store.fetch()
     console.log('testData in ChatView')
     console.log(serverData)
     return {
-      basic_info,
       serverData
     };
   },

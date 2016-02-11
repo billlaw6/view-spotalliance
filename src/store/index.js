@@ -1,60 +1,32 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-import VueResource from 'vue-resource'
+import { EventEmitter } from 'events'
+import { Promise } from 'es6-promise'
 
-import actions from './actions'
-import mutations from './mutations'
-
-Vue.use(Vuex)
-Vue.use(VueResource)
-// Vue.http.options.root = 'http://123.56.115.20'
+Vue.use(require('vue-resource'))
+// Vue.http.options.root = 'http://123.56.115.20:8080'
+Vue.http.options.root = 'http://www.spotalliance.com:8080'
 /* Vue.http.options.emulateJSON = true */
 /* Vue.http.options.emulateHttp = true */
 Vue.http.headers.common['Authorization'] = 'Basic abcdefg'
-Vue.http.headers.common['Access-Control-Allow-Origin'] = 'http://www.spotalliance.com'
-Vue.http.headers.common['Access-Control-Allow-Methods'] = 'GET, POST'
-Vue.http.headers.common['Access-Control-Allow-Credentials'] = true
-
-let logined = true
+Vue.http.headers['Access-Control-Allow-Origin'] = 'http://www.spotalliance.com'
+Vue.http.headers['Access-Control-Allow-Methods'] = 'GET, POST'
+Vue.http.headers['Access-Control-Allow-Credentials'] = true
 
 const site_name = '景尚往来'
-const key = 'local_data_key'
+// const itemsCache = Object.create(null)
+const key = 'view-of-spotalliance2'
+// const store = new EventEmitter()
 
-// 组件之间共享的变量vuex相关
-const state = {
-  login: {
-    show: true
-  },
-  sign: {
-    show: false
-  },
-  modal: {
-    show: false,
-    title: '',
-    text: ''
-  },
-  logined: {
-    value: logined
-  },
-  loading: true,
-  common: {
-    isEmail: new RegExp('([A-Za-z0-9][-A-Za-z0-9]+\@)+([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}')
-  }
-}
-
-const store = new Vuex.Store({
-  state,
-  actions,
-  mutations
-})
-
-// window.localStorage.removeItem(key)
+// 虚拟数据
+// 先清空本地数据
+window.localStorage.removeItem(key)
 if (!window.localStorage.getItem(key)) {
-  console.log('Making local data')
+  console.log('Making data')
   let now = new Date()
-  state.now = now
-
-  // 从后台取用户列表存到本地
+  let data = {
+    msg: 'data from server'
+  }
+  // 从后台取数存到本地
   // Vue.http.get('http://www.spotalliance.com/users').then(
   Vue.http.get('./src/store/testData.json', {}, {
     headers: {
@@ -65,31 +37,27 @@ if (!window.localStorage.getItem(key)) {
     function (response) {
       console.log('Get userList OK')
       console.log(response.data)
-      state.userList = response.data
+      data.userList = response.data
+      console.log(data)
+      console.log('data before save:')
+      console.log(data)
+      window.localStorage.setItem(key, JSON.stringify(data))
     },
     function (response) {
       console.log('failed')
     }
   )
-
-  console.log(state)
-  window.localStorage.setItem(key, JSON.stringify(state))
 }
 
 export default {
-  // store 用于vuex，组件间信号传递
-  store,
-  basic_info () {
-    console.log('Get basic infomation!')
-    return { site_name }
-  },
   fetch () {
     console.log('Fetching data')
     console.log(JSON.parse(window.localStorage.getItem(key)))
+    console.log('Fetched data')
     return JSON.parse(window.localStorage.getItem(key))
   },
   save (store) {
     console.log('Saving data')
     window.localStorage.setItem(key, JSON.stringify(store))
-  }
+  },
 }
