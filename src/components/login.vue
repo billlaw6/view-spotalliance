@@ -1,60 +1,36 @@
 <template>
-  <div >
-    <div >
-      <div>
-        <h2 >Please Login</h2>
-      </div>
-      <div >
-        <div >
-          <div >
-            <input pattern="([A-Za-z0-9][-A-Za-z0-9]+\@)+([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" v-model="login.username" type="text">
-            <label class="mdl-textfield__label">E-mail</label>
-          </div>
-          <div >
-            <input v-model="login.password" type="password">
-            <label >Password</label>
-          </div>
-        </div>
-      </div>
-      <div >
-        <a @click="showSign">
-          Sign up
-        </a>
-         <a v-tap="logIn">
-          Log in
-        </a>
+<validator name = "login_validation">
+  <form novalidate class="form-horizontal" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="id_username">form.username.label</label>
+      <div class="col-sm-4">
+        <input id="id_username" type="text" class="form-control" name="username" required="required" value=" form.data.username "/>
       </div>
     </div>
-  </div>
 
-  <div >
-    <div >
-      <div >
-        <h2 >Welcome to sign up</h2>
-      </div>
-      <div >
-        <div >
-          <div >
-            <input pattern="([A-Za-z0-9][-A-Za-z0-9]+\@)+([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" v-model="sign.username" type="text">
-            <label >E-mail</label>
-          </div>
-          <div >
-            <input v-model="sign.password" type="password">
-            <label >Password</label>
-          </div>
-        </div>
-      </div>
-      <div >
-        <a @click="showLogin">
-          Log in
-        </a>
-         <a v-tap="Signup">
-          Sign up
-        </a>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="id_password"> password</label>
+      <div class="col-sm-4">
+        <input id="id_password" type="password" class="form-control" name="password" required="required" /> 
       </div>
     </div>
-  </div>
+        
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="form.captcha.id_for_label">验证码</label>
+          <div class="col-sm-4">
+          </div>
+    </div>
 
+    <button class="btn">加入中国邦</button>
+    <a href="https://oauth.taobao.com/authorize?client_id=23258278&response_type=code&state=1&redirect_uri=http://www.spotalliance.com&scope=item,promotion,usergrade" >
+        <img src="{%static 'accounts/img/taobao_logo_63x24.png'%}" alt="淘宝登录" />
+    </a>
+    <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101253877&redirect_uri=http://www.spotalliance.com&state=test&scope=get_user_info,list_album,upload_pic,do_like" >
+        <img src="{%static 'accounts/img/QQ_logo_63x24.png'%}" alt="QQ登录" />
+    </a>
+  </form>
+</validator>
 </template>
 
 <script>

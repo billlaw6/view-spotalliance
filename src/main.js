@@ -3,6 +3,7 @@ Vue.config.debug = true
 
 import VueRouter from 'vue-router'
 import VueAsyncData from 'vue-async-data'
+import VueValidator from 'vue-validator'
 
 import App from './App.vue'
 
@@ -14,6 +15,7 @@ import LoginView from './components/login.vue'
 
 Vue.use(VueRouter)
 Vue.use(VueAsyncData)
+Vue.use(VueValidator)
 
 var router = new VueRouter()
 
