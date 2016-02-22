@@ -1,26 +1,32 @@
 <template>
 <validator name = "login_validation">
-  <form novalidate class="form-horizontal" role="form" @click.prevent="submit()">
-    <div class="alert alert-danger" v-if="error">
-      <p></p>
-    </div>
+  <form novalidate class="form-horizontal" role="form">
     <div class="form-group">
       <label class="col-sm-3 control-label" for="id_username">form.username.label</label>
       <div class="col-sm-4">
-        <input id="id_username" type="text" class="form-control" name="username" required="required" placeholder="username" v-model="credentials.username"/>
-        {{ credentials.username }}
+        <input id="id_username" type="text" class="form-control" name="username" required="required" value=" form.data.username "/>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-3 control-label" for="id_password"> password</label>
       <div class="col-sm-4">
-        <input id="id_password" type="password" class="form-control" name="password" required="required" placeholder="password" v-model="credentials.password"/> 
-        {{ credentials.password }}
+        <input id="id_password" type="password" class="form-control" name="password" required="required" /> 
       </div>
     </div>
         
-    <button class="btn" @click.stop.prevent="submit()">加入中国邦</button>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="form.captcha.id_for_label">验证码</label>
+          <div class="col-sm-4">
+          </div>
+    </div>
+
+    <button class="btn">加入中国邦</button>
+    <a href="https://oauth.taobao.com/authorize?client_id=23258278&response_type=code&state=1&redirect_uri=http://www.spotalliance.com&scope=item,promotion,usergrade" >
+        <img src="{%static 'accounts/img/taobao_logo_63x24.png'%}" alt="淘宝登录" />
+    </a>
+    <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101253877&redirect_uri=http://www.spotalliance.com&state=test&scope=get_user_info,list_album,upload_pic,do_like" >
+        <img src="{%static 'accounts/img/QQ_logo_63x24.png'%}" alt="QQ登录" />
     </a>
   </form>
 </validator>
@@ -30,39 +36,29 @@
 import mdl from 'material-design-lite/material.js'
 import autosize from 'autosize'
 import store from '../store/index.js'
-import auth from '../auth/index.js'
 
 export default {
   data () {
     return {
-      // We need to initialize the component with any properties that will be used in it
-      credentials: {
+      username: '',
+      login: {
         username: '',
         password: '',
+        passwordType: 'password'
       },
-      error: ''
+      sign: {
+        username: '',
+        password: '',
+        passwordType: 'password'
+      }
     }
   },
-
   ready:function(){
     this.$nextTick(function(){
       componentHandler.upgradeAllRegistered();
     })
   },
-
   methods:{
-    submit(){
-      var credentials = {
-        username: this.credentials.username,
-        password: this.credentials.password
-      }
-
-      let data = {login_info: 'nothing'}
-      data = auth.login(this, credentials, 'chat')
-      console.log(data)
-      console.log(window.localStorage.getItem('id_token'))
-    },
-
     showModal (title,text) {
       store.actions.showModal(title,text);
       

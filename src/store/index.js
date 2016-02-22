@@ -56,7 +56,7 @@ if (!window.localStorage.getItem(key)) {
 
   // 从后台取用户列表存到本地
   // Vue.http.get('http://www.spotalliance.com/users').then(
-  Vue.http.get('./src/store/testData.json', {}, {
+  Vue.http.get('/src/store/testData.json', {}, {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     },

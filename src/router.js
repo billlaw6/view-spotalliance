@@ -1,40 +1,31 @@
+import AmapView from './components/AmapView.vue'
+import ChatView from './components/ChatView.vue'
+import IntroView from './components/IntroView.vue'
+import UserView from './components/UserView.vue'
+import LoginView from './components/login.vue'
+
 module.exports = function(router){
 	router.map({
-		'/': {
-			name:'home',
-            component: function (resolve) {
-			  require(['./components/index.vue'], resolve)
-			}
-        },
-        '/write': {
-        	name:'write',
-            component: function (resolve) {
-			  require(['./components/write.vue'], resolve)
-			}
-        },
-        '/edit/:id': {
-        	name:'edit',
-            component: function (resolve) {
-			  require(['./components/write.vue'], resolve)
-			}
-        },
-        '/test': {
-        	name:'write',
-            component: function (resolve) {
-			  require(['./components/await.vue'], resolve)
-			}
-        },
-        'entry/:id':{
-        	name:'entry',
-        	component: function (resolve) {
-			  require(['./components/entry.vue'], resolve)
-			}
-        }
-    })
+    '/intro': {
+      component: IntroView
+    },
+    '/amap': {
+      component: AmapView
+    },
+    '/chat': {
+      component: ChatView
+    },
+    '/user': {
+      component: UserView
+    },
+    '/login': {
+      component: LoginView
+    }
+  })
 
-    router.redirect({
-      // 重定向任意未匹配路径到 /
-      '*': '/'
-    })
+  router.redirect({
+    // 重定向任意未匹配路径到 /
+    '*': '/intro'
+  })
 	
 }

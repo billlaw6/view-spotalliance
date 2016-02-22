@@ -1,11 +1,11 @@
 // src/auth/index.js
-// django rest auth
+// django rest framework jwt
 import {router} from '../main.js'
 
 // url and endpoint constants
 const API_URL = 'http://www.spotalliance.com/'
-const LOGIN_URL = API_URL + 'rest-auth/login/'
-const SIGNUP_URL = API_URL + 'rest-auth/registration/'
+const LOGIN_URL = API_URL + 'api-token-auth/'
+const SIGNUP_URL = API_URL + 'users/'
 
 export default {
   // User object will let us check authentication status
@@ -15,9 +15,6 @@ export default {
 
   // Send a request to the login URL and save the returned JWT
   login (context, creds, redirect) {
-    console.log(creds.username)
-    console.log(creds.password)
-    context.$http.headers.common['Authorization'] = 'Basic bGl1YmluOndvYWluaQ='
     context.$http.post(LOGIN_URL, creds, (data) => {
       window.localStorage.setItem('id_token', data.id_token)
       this.user.authenticated = true
@@ -26,7 +23,6 @@ export default {
       if (redirect) {
         router.go(redirect)
       }
-      return data
     }).error((err) => {
       context.error = err
     })

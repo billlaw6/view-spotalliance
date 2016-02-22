@@ -2,7 +2,10 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    // Put into array to workaround the error: Error: a dependency to an entry point is not allowed
+    main: ['./src/main.js']
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',

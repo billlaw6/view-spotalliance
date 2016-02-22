@@ -15,7 +15,7 @@ export default {
   },
 
   asyncData: function (resolve, reject) {
-    this.$http.get('../testData.json', {}, {
+    this.$http.get('/src/store/testData.json', {}, {
       headers: {
         "X-Requested-With": "XMLHttpRequest"
       },
