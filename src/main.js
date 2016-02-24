@@ -13,7 +13,7 @@ Vue.use(VueAsyncData)
 Vue.use(VueValidator)
 
 //To prevent error: Invalid basic header. Credentials not correctly base64 encoded
-Vue.http.headers.common['Authorization'] = 'Basic bGl1YmluOndvYWluaQ=='
+// Vue.http.headers.common['Authorization'] = 'Basic bGl1YmluOndvYWluaQ=='
 
 export var router = new VueRouter()
 routerMap(router)

@@ -23,6 +23,9 @@
     <button class="btn" @click.stop.prevent="submit()">加入中国邦</button>
     </a>
   </form>
+    <button class="btn" @click.stop.prevent="get_user_info()">USER INFO</button>
+    <button class="btn" @click.stop.prevent="cors_test()">CORS TEST</button>
+    <button class="btn" @click.stop.prevent="xhr_cors_test()">XHR CORS TEST</button>
 </validator>
 </template>
 
@@ -62,28 +65,35 @@ export default {
       console.log(data)
       console.log(window.localStorage.getItem('id_token'))
     },
+    get_user_info(){
+      let data = auth.get_user_info(this)
+      console.log(data)
+      console.log(window.localStorage.getItem('headers'))
+    },
+    cors_test(){
+      let data = auth.cors_test(this)
+      console.log(data)
+      console.log(window.localStorage.getItem('headers'))
+    },
+    xhr_cors_test(){
+      let method="POST"
+      let url = "http://www.spotalliance.com/rest-auth/login/"
+      function createCORSRequest(method, url){
+        var xhr = new XMLHttpRequest()
+        if("withCredentials" in xhr){
+          xhr.open(method, url, true)
+        } else if (typeof XDomainRequest != "undefined") {
+          xhr = new XDomainRequest()
+          xhr.open(method, url)
+        } else {
+          xhr = null
+        }
+        return xhr
+      }
+      let request = createCORSRequest(method, url)
+      request.send()
+    },
 
-    showModal (title,text) {
-      store.actions.showModal(title,text);
-      
-      this.$nextTick(function(){
-        componentHandler.upgradeAllRegistered();
-      })
-    },
-    showSign(){
-      store.actions.hideLogin()
-      store.actions.showSign()
-      this.$nextTick(function(){
-        componentHandler.upgradeAllRegistered();
-      })
-    },
-    showLogin(){
-      store.actions.showLogin()
-      store.actions.hideSign()
-       this.$nextTick(function(){
-          componentHandler.upgradeAllRegistered();
-        })
-    },
     signUp(){
       var self = this;
       let isEmail = store.state.common.isEmail;
