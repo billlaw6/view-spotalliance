@@ -77,13 +77,20 @@ export default {
     },
     xhr_cors_test(){
       let method="POST"
-      let url = "http://www.spotalliance.com/rest-auth/login/"
+      let url = "http://www.spotalliance.com/rest-auth/user/"
+      //let url = "http://www.spotalliance.com/users/"
       function createCORSRequest(method, url){
         var xhr = new XMLHttpRequest()
         if("withCredentials" in xhr){
           xhr.open(method, url, true)
+          xhr.onload = function(e) {
+            var data = JSON.parse(this.response)
+          }
         } else if (typeof XDomainRequest != "undefined") {
           xhr = new XDomainRequest()
+          xhr.onload = function(e) {
+            var data = JSON.parse(this.response)
+          }
           xhr.open(method, url)
         } else {
           xhr = null
