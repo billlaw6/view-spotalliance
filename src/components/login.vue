@@ -26,6 +26,7 @@
     <button class="btn" @click.stop.prevent="get_user_info()">USER INFO</button>
     <button class="btn" @click.stop.prevent="cors_test()">CORS TEST</button>
     <button class="btn" @click.stop.prevent="xhr_cors_test()">XHR CORS TEST</button>
+    <button class="btn" @click.stop.prevent="xhr_cors_test_post()">XHR CORS TEST POST</button>
 </validator>
 </template>
 
@@ -76,29 +77,27 @@ export default {
       console.log(window.localStorage.getItem('headers'))
     },
     xhr_cors_test(){
-      let method="POST"
-      let url = "http://www.spotalliance.com/rest-auth/user/"
-      //let url = "http://www.spotalliance.com/users/"
-      function createCORSRequest(method, url){
-        var xhr = new XMLHttpRequest()
-        if("withCredentials" in xhr){
-          xhr.open(method, url, true)
-          xhr.onload = function(e) {
-            var data = JSON.parse(this.response)
-          }
-        } else if (typeof XDomainRequest != "undefined") {
-          xhr = new XDomainRequest()
-          xhr.onload = function(e) {
-            var data = JSON.parse(this.response)
-          }
-          xhr.open(method, url)
-        } else {
-          xhr = null
-        }
-        return xhr
-      }
-      let request = createCORSRequest(method, url)
-      request.send()
+      let method='GET'
+      let url = 'http://www.spotalliance.com/users.json/'
+      let request = new XMLHttpRequest()
+      request.open(method, url, true);
+      request.setRequestHeader('User-Agent', 'XMLHttpRequest')
+      request.setRequestHeader('Accept-Language', 'en')
+      request.setRequestHeader('Content-Type', 'text/html')
+      //request.setRequestHeader('withCredential', 'true')
+      request.send(null)
+    },
+
+    xhr_cors_test_post(){
+      let method='POST'
+      let url = 'http://www.spotalliance.com/rest-auth/login/'
+      let request = new XMLHttpRequest()
+      request.open(method, url, true);
+      request.setRequestHeader('User-Agent', 'XMLHttpRequest')
+      request.setRequestHeader('Accept-Language', 'en')
+      request.setRequestHeader('Content-Type', 'application/json')
+      //request.setRequestHeader('withCredential', 'true')
+      request.send('user=liubin&password=woaini')
     },
 
     signUp(){
